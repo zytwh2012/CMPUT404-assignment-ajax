@@ -53,6 +53,8 @@
    - [ ] static/index.html responds to clicks within 100ms on average
    - [ ] Make static/index.html images look nice
    - [ ] implement anything marked XXX TODO: in static/index.html
+   - [ ] /clear returns the current state of the world {}
+   - [ ] PUT returns the object that was PUT. 
 
  
 ** Restrictions
