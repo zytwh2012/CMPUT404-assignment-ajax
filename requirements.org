@@ -55,6 +55,8 @@
    - [ ] implement anything marked XXX TODO: in static/index.html
    - [ ] /clear returns the current state of the world {}
    - [ ] PUT returns the object that was PUT. 
+   - [ ] http://hostname:5000/static/index.html will work to produce the UI
+         (so http://127.0.0.1:5000/static/index.html should work and http://localhost:5000/static/index.html should work)
 
  
 ** Restrictions
