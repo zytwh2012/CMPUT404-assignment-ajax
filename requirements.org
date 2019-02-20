@@ -58,8 +58,8 @@
 
  
 ** Restrictions
-   - [ ] Use Python 2.7
-   - [ ] Must run in the undergrad lab (Ubuntu 12.04)
+   - [ ] Use Python 3.6
+   - [ ] Must run in the VM (Ubuntu 18.10)
    - [ ] License your code properly (use an OSI approved license)
      - Put your name on it!
 
@@ -71,7 +71,6 @@
      repository. I would prefer github for the host.
      - Line 1: the git URL
      - Line 2: Your CCID
-     - Line 3: Your collaborator's CCID
 
    - To mark your assignment I should be able to type:
      git clone http://github.com/youruserid/thisassignment.git yourccid
