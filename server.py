@@ -66,8 +66,8 @@ def flask_post_json():
        that they get in the way of sane operation!'''
     if (request.json != None):
         return request.json
-    elif (request.data != None and request.data != ''):
-        return json.loads(request.data)
+    elif (request.data != None and request.data.decode("utf8") != u''):
+        return json.loads(request.data.decode("utf8"))
     else:
         return json.loads(request.form.keys()[0])
 

@@ -16,9 +16,7 @@
 #
 # run python freetests.py
 
-import urllib2
 import unittest
-import urlparse
 import json
 # your server
 import server
@@ -26,6 +24,9 @@ import random
 
 BASEHOST = '127.0.0.1'
 BASEPORT = 5000
+
+def utf8(utf8bytes):
+    return utf8bytes.decode("utf-8")
 
 class ServerTestCase(unittest.TestCase):
 
@@ -53,16 +54,16 @@ class ServerTestCase(unittest.TestCase):
         v = 'T'+str(random.randint(1,1000000))
         r = self.app.get(('/entity/%s' % v))
         self.assertTrue(r.status_code == 200, "Code not 200!")
-        self.assertTrue(json.dumps(json.loads(r.data)) == json.dumps(json.loads('{}')), "Not empty? %s" % r.data)
+        self.assertTrue(json.dumps(json.loads(utf8(r.data))) == json.dumps(json.loads('{}')), "Not empty? %s" % utf8(r.data))
         d = {'x':2, 'y':3}
         r = self.app.put(('/entity/%s' % v),data=json.dumps(d))
         self.assertTrue(r.status_code == 200, "PUT Code not 200!")
-        rd = json.loads(r.data)
+        rd = json.loads(utf8(r.data))
         for key in d:
             self.assertTrue(rd[key] == d[key], "KEY %s " % key)
         r = self.app.get(('/entity/%s' % v))
         self.assertTrue(r.status_code == 200, "Code not 200!")
-        self.assertTrue(json.loads(r.data) == d, "D != r.data")
+        self.assertTrue(json.loads(utf8(r.data)) == d, "D != r.data")
 
         
     def populateWorld(self):
@@ -83,11 +84,11 @@ class ServerTestCase(unittest.TestCase):
             r = self.app.put(('/entity/%s' % key),
                              data=json.dumps(self.world[key]))
             self.assertTrue(r.status_code == 200, "Code not 200!")
-            j = json.loads(r.data)
+            j = json.loads(utf8(r.data))
             self.assertTrue(len(j.keys()) >= 3,"JSON lacking keys! %s" % j.keys())
         r = self.app.get('/world')
         self.assertTrue(r.status_code == 200, "Code not 200!")
-        newworld = json.loads(r.data)
+        newworld = json.loads(utf8(r.data))
         for key in self.world:
             self.assertTrue(self.world[key]  == newworld[key], "Key %s" % key)
 
